@@ -1,5 +1,8 @@
 package com.appoiments.dto;
 
+import com.appoiments.entity.AffiliateEntity;
+import com.appoiments.entity.TestEntity;
+
 import java.util.Date;
 
 public class AppoimentDto {
@@ -7,19 +10,20 @@ public class AppoimentDto {
     private int id;
     private Date dateAppoiment;
     private Date hourAppoiment;
-    private TestDto idTest;
-    private AffiliateDto idAffiliate;
+    private TestEntity idTest;
+    private AffiliateEntity idAffiliate;
 
     public AppoimentDto() {
     }
 
-    public AppoimentDto(int id, Date dateAppoiment, Date hourAppoiment, TestDto idTest, AffiliateDto idAffiliate) {
+    public AppoimentDto(int id, Date dateAppoiment, Date hourAppoiment, AffiliateEntity idAffiliate, TestEntity idTest) {
         this.id = id;
         this.dateAppoiment = dateAppoiment;
         this.hourAppoiment = hourAppoiment;
         this.idTest = idTest;
         this.idAffiliate = idAffiliate;
     }
+
 
     public int getId() {
         return id;
@@ -45,19 +49,19 @@ public class AppoimentDto {
         this.hourAppoiment = hourAppoiment;
     }
 
-    public TestDto getIdTest() {
+    public TestEntity getIdTest() {
         return idTest;
     }
 
-    public void setIdTest(TestDto idTest) {
+    public void setIdTest(TestEntity idTest) {
         this.idTest = idTest;
     }
 
-    public AffiliateDto getIdAffiliate() {
+    public AffiliateEntity getIdAffiliate() {
         return idAffiliate;
     }
 
-    public void setIdAffiliate(AffiliateDto idAffiliate) {
+    public void setIdAffiliate(AffiliateEntity idAffiliate) {
         this.idAffiliate = idAffiliate;
     }
 }

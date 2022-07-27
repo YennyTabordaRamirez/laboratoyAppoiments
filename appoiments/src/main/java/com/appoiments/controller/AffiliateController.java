@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("laboratory")
+@RequestMapping("patient")
 public class AffiliateController {
 
     @Autowired
@@ -22,6 +22,21 @@ public class AffiliateController {
     @GetMapping("/findAffiliate/{id}")
     public AffiliateDto getAffiliateById(@PathVariable("id") int id){
         return affiliateServiceImpl.getAffiliateById(id);
+    }
+
+    @PostMapping("/newAffiliate")
+    public @ResponseBody AffiliateDto postAffiliate(@RequestBody AffiliateDto affiliateDto){
+        return affiliateServiceImpl.newAffiliate(affiliateDto);
+    }
+
+    @PutMapping("/updateAffiliate")
+    public @ResponseBody AffiliateDto putAffiliate(@RequestBody AffiliateDto affiliateDto){
+        return affiliateServiceImpl.updateAffiliate(affiliateDto);
+    }
+
+    @DeleteMapping("/deleteAffiliate/{id}")
+    public boolean deleteAffiliate(@PathVariable("id")int id){
+        return affiliateServiceImpl.deleteAffiliate(id);
     }
 
 }

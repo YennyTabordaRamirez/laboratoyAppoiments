@@ -25,6 +25,22 @@ public class AffiliateServiceImpl implements IAffiliateService {
 
     @Override
     public AffiliateDto newAffiliate(AffiliateDto affiliateDto) {
+
+       AffiliateEntity affiliateEntity = new AffiliateEntity();
+
+       affiliateEntity.setFullName(affiliateDto.getFullName());
+       affiliateEntity.setAge(affiliateDto.getAge());
+       affiliateEntity.setEmail(affiliateDto.getEmail());
+
+        affiliateEntity = iAffiliateRepository.save(affiliateEntity);
+
+       if (null != affiliateEntity && affiliateEntity.getId() > 0){
+                ModelMapper modelMapper = new ModelMapper();
+
+           affiliateDto = modelMapper.map(affiliateEntity, AffiliateDto.class);
+
+            return affiliateDto;
+        }
         return null;
     }
 
@@ -56,11 +72,33 @@ public class AffiliateServiceImpl implements IAffiliateService {
 
     @Override
     public AffiliateDto updateAffiliate(AffiliateDto affiliateDto) {
+        if(null != affiliateDto && affiliateDto.getId() > 0){
+
+            AffiliateEntity  affiliateEntity = iAffiliateRepository.findById(affiliateDto.getId()).get();
+            affiliateEntity.setFullName(affiliateDto.getFullName());
+            affiliateEntity.setAge(affiliateDto.getAge());
+            affiliateEntity.setEmail(affiliateDto.getEmail());
+
+            if(null !=  affiliateEntity){
+
+                ModelMapper modelMapper = new ModelMapper();
+                affiliateEntity = iAffiliateRepository.save(affiliateEntity);
+                affiliateDto = modelMapper.map(affiliateEntity, AffiliateDto.class);
+                return affiliateDto;
+            }
+        }
         return null;
     }
 
     @Override
     public boolean deleteAffiliate(int id) {
+        if(iAffiliateRepository.existsById(id)){
+            Optional<AffiliateEntity> affiliateEntity = iAffiliateRepository.findById(id);
+            if(affiliateEntity.isPresent()) {
+                iAffiliateRepository.deleteById(id);
+                return true;
+            }
+        }
         return false;
     }
 }
