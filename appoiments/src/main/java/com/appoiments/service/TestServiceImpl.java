@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -23,16 +24,27 @@ public class TestServiceImpl implements ITestService {
         this.iTestRepository = iTestRepository;
     }
 
+    //Este método serà refactorizado
     @Override
     public TestDto newTest(TestDto testDto) {
 
         TestEntity testEntity = new TestEntity();
 
-        testEntity.setTestName(testDto.getTestName());
-        testEntity.setComments(testDto.getComments());
+        String nombrerepetido = "";
+        List<TestDto> listTestName = iTestRepository.findByTestName();
 
-        testEntity = iTestRepository.save(testEntity);
-
+        for(int i = 0; i<=listTestName.size(); i++){
+            if(listTestName.get(i).getTestName() == testDto.getTestName().toLowerCase()){
+                nombrerepetido = listTestName.get(i).getTestName();
+            }
+        }
+                while (testDto.getTestName().toLowerCase() != nombrerepetido){
+                    testEntity.setTestName(testDto.getTestName());
+                    testEntity.setComments(testDto.getComments());
+                    testEntity = iTestRepository.save(testEntity);
+                    //testEntity.getTestName().toLowerCase() != testDto.getTestName().toLowerCase()
+                    //testEntity.getTestName().equalsIgnoreCase(testDto.getTestName()
+                }
         if (null != testEntity && testEntity.getId() > 0){
             ModelMapper modelMapper = new ModelMapper();
 
