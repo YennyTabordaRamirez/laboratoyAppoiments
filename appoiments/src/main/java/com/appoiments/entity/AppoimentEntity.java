@@ -18,13 +18,13 @@ public class AppoimentEntity {
     @Column(name="hou_appoiment")
     private Date hourAppoiment;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Test")
     private TestEntity idTest;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+/*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "test_Name")
-    private TestEntity testNamed;
+    private TestEntity testNamed;*/
 
     @ManyToOne
     @JoinColumn(name = "id_Affiliate")

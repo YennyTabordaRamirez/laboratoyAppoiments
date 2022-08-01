@@ -49,8 +49,8 @@ public class AppoimentServiceImpl implements IAppoimentService {
         Optional<AppoimentEntity> appoimentEntity = IappoimentRepository.findById(id);
 
         return new AppoimentDto(appoimentEntity.get().getId(), appoimentEntity.get().getDateAppoiment(),
-                appoimentEntity.get().getHourAppoiment()
-                ,appoimentEntity.get().getIdAffiliate(),appoimentEntity.get().getIdTest());
+                appoimentEntity.get().getHourAppoiment(), appoimentEntity.get().getIdTest()
+                ,appoimentEntity.get().getIdAffiliate());
 
     }
 
@@ -78,8 +78,8 @@ public class AppoimentServiceImpl implements IAppoimentService {
             AppoimentEntity  appoimentEntity = IappoimentRepository.findById(appoimentDto.getId()).get();
             appoimentEntity.setDateAppoiment(appoimentDto.getDateAppoiment());
             appoimentEntity.setHourAppoiment(appoimentDto.getHourAppoiment());
-            //appoimentEntity.setIdAffiliate(appoimentDto.getIdAffiliate());
-            //appoimentEntity.setIdTest(appoimentDto.getIdTest());
+            appoimentEntity.setIdAffiliate(appoimentDto.getIdAffiliate());
+            appoimentEntity.setIdTest(appoimentDto.getIdTest());
 
             if(null !=  appoimentEntity){
 

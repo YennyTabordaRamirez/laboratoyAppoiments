@@ -16,7 +16,7 @@ public class AppoimentDto {
     public AppoimentDto() {
     }
 
-    public AppoimentDto(int id, Date dateAppoiment, Date hourAppoiment, AffiliateEntity idAffiliate, TestEntity idTest) {
+    public AppoimentDto(int id, Date dateAppoiment, Date hourAppoiment, TestEntity idTest, AffiliateEntity idAffiliate) {
         this.id = id;
         this.dateAppoiment = dateAppoiment;
         this.hourAppoiment = hourAppoiment;
@@ -24,7 +24,8 @@ public class AppoimentDto {
         this.idAffiliate = idAffiliate;
     }
 
-
+    public AppoimentDto(int id, Date dateAppoiment, Date hourAppoiment, TestEntity idTest, Integer idAffiliate) {
+    }
     public int getId() {
         return id;
     }

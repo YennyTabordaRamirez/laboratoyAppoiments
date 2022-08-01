@@ -5,7 +5,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Tests")
-@IdClass(value = TestEntityCompound.class)
+//@IdClass(value = TestEntityCompound.class)
 public class TestEntity {
 
     @Id
@@ -13,19 +13,19 @@ public class TestEntity {
     @Column(name="id", nullable = false)
     private int id;
 
-    @Id
-    @GeneratedValue
+    //@Id
+    //@GeneratedValue
     @Column(name="test_name", nullable = false)
     private String testName;
 
     @Column(name="comments", length = 100)
     private String comments;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy = "idTest", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idTest", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<AppoimentEntity> appoimentDtoIdTests;
 
-    @OneToMany(mappedBy = "testName", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<AppoimentEntity> appoimentDtoTestName;
+    /*@OneToMany(mappedBy = "testName", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<AppoimentEntity> appoimentDtoTestName;*/
 
     public TestEntity() {
     }

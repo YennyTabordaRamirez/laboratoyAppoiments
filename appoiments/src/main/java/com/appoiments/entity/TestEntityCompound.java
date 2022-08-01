@@ -1,3 +1,4 @@
+/*
 package com.appoiments.entity;
 
 import javax.persistence.Column;
@@ -39,3 +40,4 @@ public class TestEntityCompound implements Serializable {
         //id.equals(testEntityCompoundId.id) && testName.equals(testEntityCompoundId.testName);
     }
 }
+*/
