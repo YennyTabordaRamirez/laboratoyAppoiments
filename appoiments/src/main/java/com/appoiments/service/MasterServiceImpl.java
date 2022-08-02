@@ -42,9 +42,9 @@ public class MasterServiceImpl implements IMasterService {
         if(null == affiliateEntity)
         return null;
 
-        MasterDto masterDto = createAppointmentMaster(affiliateEntity);
-        Query query = new Query();
-        query.(Criteria.where("idAffiliate").is(affiliate.getId()));
+        //MasterDto masterDto = createAppointmentMaster(affiliateEntity);
+        //Query query = new Query();
+        //query.(Criteria.where("idAffiliate").is(affiliate.getId()));
 
         return null;
     }

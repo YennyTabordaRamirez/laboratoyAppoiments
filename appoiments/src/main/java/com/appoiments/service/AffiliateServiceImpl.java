@@ -25,21 +25,26 @@ public class AffiliateServiceImpl implements IAffiliateService {
 
     @Override
     public AffiliateDto newAffiliate(AffiliateDto affiliateDto) {
+        AffiliateEntity affiliateEntity = new AffiliateEntity();
+        try {
 
-       AffiliateEntity affiliateEntity = new AffiliateEntity();
 
-       affiliateEntity.setFullName(affiliateDto.getFullName());
-       affiliateEntity.setAge(affiliateDto.getAge());
-       affiliateEntity.setEmail(affiliateDto.getEmail());
+            affiliateEntity.setFullName(affiliateDto.getFullName());
+            affiliateEntity.setAge(affiliateDto.getAge());
+            affiliateEntity.setEmail(affiliateDto.getEmail());
 
-        affiliateEntity = iAffiliateRepository.save(affiliateEntity);
+            affiliateEntity = iAffiliateRepository.save(affiliateEntity);
 
-       if (null != affiliateEntity && affiliateEntity.getId() > 0){
+            if (null != affiliateEntity && affiliateEntity.getId() > 0){
                 ModelMapper modelMapper = new ModelMapper();
 
-           affiliateDto = modelMapper.map(affiliateEntity, AffiliateDto.class);
+                affiliateDto = modelMapper.map(affiliateEntity, AffiliateDto.class);
 
-            return affiliateDto;
+                return affiliateDto;
+            }
+        }
+        catch (Exception e){
+            return null;
         }
         return null;
     }
